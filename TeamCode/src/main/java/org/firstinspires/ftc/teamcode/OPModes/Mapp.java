@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OPModes;
 
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -25,7 +26,7 @@ public class Mapp {
     public Servo Elbow2 = null;
     public Servo Claw = null;
     public Servo Wrist = null;
-    public GoBildaPinpointDriver pinpoint; // pinpoint CH i2C port 0
+    public GoBildaPinpointDriverRR pinpoint; // pinpoint CH i2C port 0
     public IMU      imu              = null;
 
 
@@ -92,7 +93,7 @@ public class Mapp {
                 RevHubOrientationOnRobot.UsbFacingDirection.LEFT));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
-        pinpoint = Mapp.get(GoBildaPinpointDriver.class,"pinpoint");
+        pinpoint = Mapp.get(GoBildaPinpointDriverRR.class,"pinpoint");
         pinpoint.resetPosAndIMU();
 
 

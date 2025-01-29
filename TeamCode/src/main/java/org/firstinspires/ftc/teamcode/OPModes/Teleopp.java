@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.GoBilda.GoBildaPinpointDriver;
-import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.PinpointDrive;
 
 import java.util.Locale;
 
@@ -62,7 +62,7 @@ public class Teleopp extends LinearOpMode {
 
 
 
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+        PinpointDrive drive = new PinpointDrive(hardwareMap, new Pose2d(0, 0, 0));
 
 
         waitForStart();

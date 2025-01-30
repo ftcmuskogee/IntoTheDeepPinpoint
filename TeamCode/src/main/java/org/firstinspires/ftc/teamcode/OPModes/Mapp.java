@@ -56,10 +56,13 @@ public class Mapp {
     public final int ARM_LOW_BASKET_POSITION = 0;
 
     // sets hardware map to null and names it
+    Mapp robot = new Mapp();
 
+
+    HardwareMap Mapp = null;
     // creates runtime variable
     public ElapsedTime runtime = new ElapsedTime();
-    public void runOpMode() {
+    public void init(HardwareMap hmap) {
         //sets up names for configuration
         Mapp = hmap;
 

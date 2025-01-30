@@ -58,6 +58,16 @@ public class AutoRR extends LinearOpMode{
         PinpointDrive drive = new PinpointDrive(hardwareMap, new Pose2d(0, 0, 0));
 
 
+        //Key Pay inputs to selecting Starting Position of robot
+        selectStartingPosition();
+
+        // Wait for the DS start button to be touched.
+        telemetry.addData("Selected Starting Position", startPosition);
+        telemetry.addData("Selected Delay Position", delayPosition);
+        telemetry.addData("Selected Delay Position", startDelay);
+        telemetry.addData(">", "Touch Play to start OpMode");
+        telemetry.update();
+
         while (!isStopRequested() && !opModeIsActive()) {
             telemetry.addData("Selected Starting Position", startPosition);
             telemetry.addData("Selected Delay Position", delayPosition);
@@ -70,8 +80,6 @@ public class AutoRR extends LinearOpMode{
             runAutonoumousMode();
         }
     }
-
-    //end runOpMode();
 
     public void runAutonoumousMode() {
         robot.init(hardwareMap, false);
@@ -124,18 +132,12 @@ public class AutoRR extends LinearOpMode{
             case RED_SAMPLES:
                 drive = new PinpointDrive(hardwareMap, initPose);
                 sampleScoringPosition = new Pose2d(1.4, 12.7, Math.toRadians(133.6) );
-                sampleScoringPosition2 = new Pose2d(6, 34, Math.toRadians(238) );
-                yellowSample1Position = new Pose2d(27.7, 9.5, Math.toRadians(0));
-                yellowSample2Position = new Pose2d(27.7, 19.2, Math.toRadians(0));
-                yellowSample3Position = new Pose2d(28.7, 22.3, Math.toRadians(22));
+                yellowSample1Position = new Pose2d(24, 12, Math.toRadians(0));
+                yellowSample2Position = new Pose2d(38, 10, Math.toRadians(0));
+                yellowSample3Position = new Pose2d(40, 10, Math.toRadians(22));
                 midwayPose1 = new Pose2d(14, -7, Math.toRadians(180));
                 midwayPose2 = new Pose2d(12, 8, Math.toRadians(180));
                 midwayPose3 = new Pose2d(18, 20, Math.toRadians(0));
-                midwayPose4 = new Pose2d(16, 25, Math.toRadians(90));
-                midwayPose5 = new Pose2d(20, 20, Math.toRadians(75));
-                midwayPose6 = new Pose2d(15, 20, Math.toRadians(135));
-                midwayPose7 = new Pose2d(25, 20, Math.toRadians(135));
-                midwayPose8 = new Pose2d(60, 20, Math.toRadians(135));
                 parkPose = new Pose2d(50, -5, 270);
                 break;
 

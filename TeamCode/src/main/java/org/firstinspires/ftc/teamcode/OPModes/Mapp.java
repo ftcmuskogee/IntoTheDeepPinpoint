@@ -243,22 +243,4 @@ public class Mapp {
     }
 
 
-
-    //move arm in
-    public void IN(double seconds) {
-        double time = (seconds * 1000) + runtime.milliseconds();
-        while (time > runtime.milliseconds()) {
-            Arm.setPower(-.2);
-            Arm2.setPower(-.2);
-        }
-
     }
-    //move arm out
-    public void OUT(double seconds) {
-        double time = (seconds * 1000) + runtime.milliseconds();
-        while (time > runtime.milliseconds()) {
-            Arm.setPower(.2);
-            Arm2.setPower(.2);
-        }
-    }
-}

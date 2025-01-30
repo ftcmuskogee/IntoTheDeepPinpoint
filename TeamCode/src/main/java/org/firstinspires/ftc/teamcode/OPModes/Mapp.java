@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.OPModes;
 
+import androidx.annotation.NonNull;
+
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -13,7 +15,6 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.GoBilda.GoBildaPinpointDriver;
 
 public class Mapp {
-    boolean y = false;
     // names motors and sets motors to type null
     public DcMotor rightFront = null;
     public DcMotor rightBack = null;
@@ -27,7 +28,7 @@ public class Mapp {
     public Servo Claw = null;
     public Servo Wrist = null;
     public GoBildaPinpointDriverRR pinpoint; // pinpoint CH i2C port 0
-    public IMU      imu              = null;
+    public IMU imu = null;
 
 
 
@@ -38,38 +39,27 @@ public class Mapp {
     // Hardware Constants
 
     // Claw constraints
-    public final double CLAW_OPEN = 0.5;
-    public final double CLAW_CLOSE = 0.5;
+    public final double CLAW_OPEN = 80;
+    public final double CLAW_CLOSE = 0;
 
     //Wrist constraints
-    public final double WRIST_DOWN = 0.4;
-    public final double WRIST_UP = 0;
+    public final double WRIST_HOR = 60;
+    public final double WRIST_VERT = 0;
 
     // Elbow constraints
     public final int ELBOW_GRAB_POSITION = 0;
-    public final int ELBOW_HIGH_BAR_POSITION = 1150;
+    public final int ELBOW_UP = 100;
 
     // Arm constraints
-    public final double ARM_DOWN_POWER = -0.2;
-    public final double ARM_UP_POWER = 0.2;
     public final int ARM_RESET_POSITION = 0;
     public final int ARM_HIGH_BAR_POSITION = 1080;
     public final int ARM_LOW_BASKET_POSITION = 0;
-    public final int ARM_DOWN_MAX = 1670;
-
-    public final double ARM2_DOWN_POWER = -0.2;
-    public final double ARM2_UP_POWER = 0.2;
-    public final int ARM2_RESET_POSITION = 0;
-    public final int ARM2_HIGH_BAR_POSITION = 1080;
-    public final int ARM2_LOW_BASKET_POSITION = 0;
-    public final int ARM2_DOWN_MAX = 1670;
 
     // sets hardware map to null and names it
 
     // creates runtime variable
     public ElapsedTime runtime = new ElapsedTime();
-    HardwareMap Mapp = null;
-    public void init(HardwareMap hmap, boolean teleopMode) {
+    public void runOpMode() {
         //sets up names for configuration
         Mapp = hmap;
 
@@ -104,13 +94,11 @@ public class Mapp {
         Claw.setPosition(80);
         Wrist.setPosition(0);
 
-        if (teleopMode) {
 
-            rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        }
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         leftBack.setDirection(DcMotor.Direction.REVERSE);

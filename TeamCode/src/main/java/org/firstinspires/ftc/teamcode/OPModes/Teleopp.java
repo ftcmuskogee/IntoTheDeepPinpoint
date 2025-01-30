@@ -31,7 +31,7 @@ public class Teleopp extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        robot.init(hardwareMap, true);
+        robot.init(hardwareMap);
 
         odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
         odo.setOffsets(-84.0, -168.0);
@@ -57,7 +57,7 @@ public class Teleopp extends LinearOpMode {
         double extend;
 
         int armPosition = robot.ARM_RESET_POSITION;
-        int arm2Position = robot.ARM2_RESET_POSITION;
+        int arm2Position = robot.ARM_RESET_POSITION;
 
 
 
@@ -168,7 +168,7 @@ public class Teleopp extends LinearOpMode {
             //reset positions
             if(gamepad2.b){
                 armPosition = robot.ARM_RESET_POSITION;
-                arm2Position = robot.ARM2_RESET_POSITION;
+                arm2Position = robot.ARM_RESET_POSITION;
                 robot.Elbow.setPosition(0);
                 robot.Elbow2.setPosition(0);
                 robot.C(0);
@@ -178,7 +178,7 @@ public class Teleopp extends LinearOpMode {
             //score high basket
             if(gamepad2.x){
                 armPosition = robot.ARM_LOW_BASKET_POSITION;
-                arm2Position = robot.ARM2_LOW_BASKET_POSITION;
+                arm2Position = robot.ARM_LOW_BASKET_POSITION;
                 robot.Elbow.setPosition(0);
                 robot.Elbow2.setPosition(0);
                 robot.C(0);
@@ -188,11 +188,11 @@ public class Teleopp extends LinearOpMode {
             //score low basket
             if(gamepad2.y){
                 armPosition = robot.ARM_LOW_BASKET_POSITION;
-                arm2Position = robot.ARM2_LOW_BASKET_POSITION;
+                arm2Position = robot.ARM_LOW_BASKET_POSITION;
                 robot.Elbow.setPosition(0);
                 robot.Elbow2.setPosition(0);
                 robot.C(robot.CLAW_OPEN);
-                robot.W(robot.WRIST_DOWN);
+                robot.W(robot.WRIST_HOR);
             }
 
 

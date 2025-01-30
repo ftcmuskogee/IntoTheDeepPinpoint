@@ -59,9 +59,9 @@ public class Mapp {
 
     // creates runtime variable
     public ElapsedTime runtime = new ElapsedTime();
-    public void runOpMode() {
+    public void init(HardwareMap hmap) {
         //sets up names for configuration
-        Mapp = hmap;
+        HardwareMap Mapp = hmap;
 
         Elbow = hmap.get(Servo.class, "E");
         Elbow2 = hmap.get(Servo.class, "E2");

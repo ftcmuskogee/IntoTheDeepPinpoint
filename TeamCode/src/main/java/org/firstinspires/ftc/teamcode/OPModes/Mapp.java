@@ -101,7 +101,7 @@ public class Mapp {
         Elbow.setPosition(100);
         Elbow2.setPosition(100);
         LittleArm.setPosition(0);
-        Claw.setPosition(0);
+        Claw.setPosition(80);
         Wrist.setPosition(0);
 
         if (teleopMode) {

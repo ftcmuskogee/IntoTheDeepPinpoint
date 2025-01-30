@@ -35,7 +35,6 @@ public class AutoRR extends LinearOpMode{
     public LinearOpMode opMode = this;
     Mapp robot = new Mapp();
 
-
     public double startDelay = 0;
     public int delayPosition = 0;
 
@@ -61,10 +60,16 @@ public class AutoRR extends LinearOpMode{
         //Key Pay inputs to selecting Starting Position of robot
         selectStartingPosition();
 
-        // Wait for the DS start button to be touched.
         telemetry.addData("Selected Starting Position", startPosition);
         telemetry.addData("Selected Delay Position", delayPosition);
         telemetry.addData("Selected Delay Position", startDelay);
+        telemetry.addLine("Open CV Vision for Red/Blue Team Element Detection");
+        telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
+        telemetry.addLine("The starting point of the robot is assumed to be on the starting tile, " +
+                "and along the edge farther from the truss legs. ");
+        telemetry.addLine("You should also have a webcam connected and positioned in a way to see " +
+                "the middle spike mark and the spike mark away from the truss (and ideally nothing else). " +
+                "We assumed the camera to be in the center of the robot. ");
         telemetry.addData(">", "Touch Play to start OpMode");
         telemetry.update();
 
@@ -74,7 +79,6 @@ public class AutoRR extends LinearOpMode{
             telemetry.addData("Selected Delay Position", startDelay);
 
         }
-
         //Game Play Button  is pressed
         if (opModeIsActive() && !isStopRequested()) {
             runAutonoumousMode();
@@ -132,7 +136,7 @@ public class AutoRR extends LinearOpMode{
             case RED_SAMPLES:
                 drive = new PinpointDrive(hardwareMap, initPose);
                 sampleScoringPosition = new Pose2d(1.4, 12.7, Math.toRadians(133.6) );
-                yellowSample1Position = new Pose2d(24, 12, Math.toRadians(0));
+                yellowSample1Position = new Pose2d(24, 15, Math.toRadians(0));
                 yellowSample2Position = new Pose2d(38, 10, Math.toRadians(0));
                 yellowSample3Position = new Pose2d(40, 10, Math.toRadians(22));
                 midwayPose1 = new Pose2d(14, -7, Math.toRadians(180));
@@ -181,17 +185,19 @@ public class AutoRR extends LinearOpMode{
                 startPosition == START_POSITION.RED_SAMPLES) {
             robot.init(hardwareMap, false);
 
-            robot.W(1);
-
             // Drive to scoring position
             Actions.runBlocking(
                     drive.actionBuilder(drive.pose)
                             .strafeToLinearHeading(yellowSample1Position.position, yellowSample1Position.heading)
                             .build());
 
-            // Raise Arm to high bucket scoring position
-            if(opModeIsActive()) {
-                sleep(800);
+            //close claw on sample 1 and move arm up
+            if (opModeIsActive()) robot.W(60);
+            if (opModeIsActive()) robot.E(10);
+            if (opModeIsActive()) robot.E2(10);
+            sleep(500);
+            if (opModeIsActive()) robot.C(0);
+
 
 
         }   //end of if (startPosition == BLUE_SAMPLES || RED_SAMPLES)

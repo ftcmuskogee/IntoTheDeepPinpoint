@@ -117,20 +117,20 @@ public class Teleopp extends LinearOpMode {
             }
 
 
-            //wrist down
-            if (gamepad2.right_bumper) {
+            //wrist horizontal
+            if (gamepad2.right_trigger > 0) {
                 robot.Wrist.setPosition(60);
             }
-            // wrist up
-            if (gamepad2.left_bumper) {
+            // wrist vertical
+            if (gamepad2.left_trigger > 0) {
                 robot.Wrist.setPosition(0);
             }
 
-            //open claw
-            if (gamepad2.left_trigger > 0) {
+            //close claw
+            if (gamepad2.left_bumper) {
                 robot.Claw.setPosition(0);
-                //close claw
-            } else if (gamepad2.right_trigger > 0) {
+                //open claw
+            } else if (gamepad2.right_bumper) {
                 robot.Claw.setPosition(80);
             }
 
@@ -142,8 +142,10 @@ public class Teleopp extends LinearOpMode {
                 robot.Elbow2.setPosition(0);
             }
 
+            //arm out
             if (gamepad2.dpad_left) {
                 robot.LittleArm.setPosition(1);
+                //arm in
             } else if (gamepad2.dpad_right) {
                 robot.LittleArm.setPosition(0);
             }

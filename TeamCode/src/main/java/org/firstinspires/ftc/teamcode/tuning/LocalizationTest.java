@@ -16,7 +16,6 @@ public class LocalizationTest extends LinearOpMode {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         PinpointDrive drive = new PinpointDrive(hardwareMap, new Pose2d(0, 0, 0));
-
         waitForStart();
 
         while (opModeIsActive()) {

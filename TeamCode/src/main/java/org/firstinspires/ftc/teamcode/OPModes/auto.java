@@ -202,10 +202,15 @@ public class auto extends LinearOpMode{
             safeWaitSeconds(1);
             if(opModeIsActive()) robot.Arm.setPower(2);
             if(opModeIsActive()) robot.Arm2.setPower(2);
-            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
-            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.PULL_SPECIMEN);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.PULL_SPECIMEN2);
             safeWaitSeconds(1);
             if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
+            if(opModeIsActive()) robot.Arm.setPower(2);
+            if(opModeIsActive()) robot.Arm2.setPower(2);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
+
 
 
             Actions.runBlocking(

@@ -47,12 +47,14 @@ public class Mapp {
     public final double WRIST_VERT = 1;
 
     // Elbow constraints
-    public final double ELBOW_GRAB = .1;
+    public final double ELBOW_GRAB = 0;
     public final double ELBOW_UP = 1;
 
     // Arm constraints
     public final int ARM_RESET_POSITION = 0;
-    public final int ARM_HIGH_BAR_POSITION = 1900;
+    public final int PULL_SPECIMEN = 600;
+    public final int PULL_SPECIMEN2 = -1100;
+    public final int ARM_HIGH_BAR_POSITION = 1850;
     public final int ARM2_HIGH_BAR_POSITION = -1900;
     public final int ARM_LOW_BASKET_POSITION = 1840;
     public final int ARM2_LOW_BASKET_POSITION = -1840;

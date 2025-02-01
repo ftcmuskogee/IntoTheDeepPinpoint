@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.GoBilda.GoBildaPinpointDriver;
 
 public class Mapp {
     // names motors and sets motors to type null
-    public DcMotor rightFront = null;
+    private DcMotor rightFront = null;
     public DcMotor rightBack = null;
     public DcMotor leftBack = null;
     public DcMotor leftFront = null;
@@ -39,29 +39,32 @@ public class Mapp {
     // Hardware Constants
 
     // Claw constraints
-    public final double CLAW_OPEN = 80;
+    public final double CLAW_OPEN = 1;
     public final double CLAW_CLOSE = 0;
 
     //Wrist constraints
-    public final double WRIST_HOR = 60;
-    public final double WRIST_VERT = 0;
+    public final double WRIST_HOR = 0;
+    public final double WRIST_VERT = 1;
 
     // Elbow constraints
-    public final int ELBOW_GRAB_POSITION = 0;
-    public final int ELBOW_UP = 100;
+    public final double ELBOW_GRAB = .1;
+    public final double ELBOW_UP = 1;
 
     // Arm constraints
     public final int ARM_RESET_POSITION = 0;
-    public final int ARM_HIGH_BAR_POSITION = 1080;
-    public final int ARM_LOW_BASKET_POSITION = 0;
+    public final int ARM_HIGH_BAR_POSITION = 1900;
+    public final int ARM2_HIGH_BAR_POSITION = -1900;
+    public final int ARM_LOW_BASKET_POSITION = 1840;
+    public final int ARM2_LOW_BASKET_POSITION = -1840;
 
     // sets hardware map to null and names it
 
     // creates runtime variable
     public ElapsedTime runtime = new ElapsedTime();
+    HardwareMap Mapp = null;
     public void init(HardwareMap hmap) {
         //sets up names for configuration
-        HardwareMap Mapp = hmap;
+        Mapp = hmap;
 
         Elbow = hmap.get(Servo.class, "E");
         Elbow2 = hmap.get(Servo.class, "E2");
@@ -88,11 +91,11 @@ public class Mapp {
 
 
 
-        Elbow.setPosition(100);
-        Elbow2.setPosition(100);
+        Elbow.setPosition(1);
+        Elbow2.setPosition(1);
         LittleArm.setPosition(0);
-        Claw.setPosition(80);
-        Wrist.setPosition(0);
+        Claw.setPosition(1);
+        Wrist.setPosition(1);
 
 
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

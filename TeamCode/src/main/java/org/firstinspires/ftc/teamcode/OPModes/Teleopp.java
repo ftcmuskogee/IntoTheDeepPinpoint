@@ -119,7 +119,7 @@ public class Teleopp extends LinearOpMode {
 
             //wrist horizontal
             if (gamepad2.right_trigger > 0) {
-                robot.Wrist.setPosition(60);
+                robot.Wrist.setPosition(1);
             }
             // wrist vertical
             if (gamepad2.left_trigger > 0) {
@@ -131,15 +131,15 @@ public class Teleopp extends LinearOpMode {
                 robot.Claw.setPosition(0);
                 //open claw
             } else if (gamepad2.right_bumper) {
-                robot.Claw.setPosition(80);
+                robot.Claw.setPosition(1);
             }
 
             if (gamepad2.dpad_up) {
-                robot.Elbow.setPosition(100);
-                robot.Elbow2.setPosition(100);
+                robot.Elbow.setPosition(1);
+                robot.Elbow2.setPosition(1);
             } else if (gamepad2.dpad_down) {
-                robot.Elbow.setPosition(0);
-                robot.Elbow2.setPosition(0);
+                robot.Elbow.setPosition(.1);
+                robot.Elbow2.setPosition(.1);
             }
 
             //arm out
@@ -156,45 +156,9 @@ public class Teleopp extends LinearOpMode {
             //TODO: CHANGE THE VALUES FOR THE POSITIONS
             //score high bar
             if(gamepad2.a){
-                armPosition = robot.ARM_HIGH_BAR_POSITION;
-                arm2Position = robot.ARM_HIGH_BAR_POSITION;
-                robot.Elbow.setPosition(0);
-                robot.Elbow2.setPosition(0);
-                sleep(500);
-                robot.C(0);
-                robot.W(0);
+                robot.Elbow.setPosition(robot.ARM_LOW_BASKET_POSITION);
+                robot.Elbow2.setPosition(robot.ARM2_LOW_BASKET_POSITION);
             }
-
-            //reset positions
-            if(gamepad2.b){
-                armPosition = robot.ARM_RESET_POSITION;
-                arm2Position = robot.ARM_RESET_POSITION;
-                robot.Elbow.setPosition(0);
-                robot.Elbow2.setPosition(0);
-                robot.C(0);
-                robot.W(0);
-            }
-
-            //score high basket
-            if(gamepad2.x){
-                armPosition = robot.ARM_LOW_BASKET_POSITION;
-                arm2Position = robot.ARM_LOW_BASKET_POSITION;
-                robot.Elbow.setPosition(0);
-                robot.Elbow2.setPosition(0);
-                robot.C(0);
-                robot.W(0);
-            }
-
-            //score low basket
-            if(gamepad2.y){
-                armPosition = robot.ARM_LOW_BASKET_POSITION;
-                arm2Position = robot.ARM_LOW_BASKET_POSITION;
-                robot.Elbow.setPosition(0);
-                robot.Elbow2.setPosition(0);
-                robot.C(robot.CLAW_OPEN);
-                robot.W(robot.WRIST_HOR);
-            }
-
 
             /*
             Gets the Pinpoint device status. Pinpoint can reflect a few states. But we'll primarily see

@@ -149,11 +149,11 @@ public class auto extends LinearOpMode{
 
             case RED_SPECIMENS:
       //          drive = new PinpointDrive(hardwareMap, initPose);
-                specimenScoringPosition = new Pose2d(25, 16.4, Math.toRadians(0));
+                specimenScoringPosition = new Pose2d(24.5, 16.4, Math.toRadians(0));
                 specimenScoringPosition2 = new Pose2d(21, 5, Math.toRadians(-45));
                 grabSpecimenPosition = new Pose2d(8.1, -28.6, Math.toRadians(175));
                 coloredSample1Position = new Pose2d(39, -32, 0);
-                coloredSample2Position = new Pose2d(0, 0, 0);
+                coloredSample2Position = new Pose2d(39, -40, 0);
                 coloredSample3Position = new Pose2d(0, 0, 0);
                 pushSample = new Pose2d(9, -23, 0);
                 midwayPose1 = new Pose2d(50, -18, 0);
@@ -277,6 +277,17 @@ public class auto extends LinearOpMode{
                             .strafeToLinearHeading(pushSample.position, pushSample.heading)
                             .build());
 
+            Actions.runBlocking(
+                    drive.actionBuilder(drive.pose)
+                            .strafeToLinearHeading(midwayPose1.position, midwayPose1.heading)
+                            .strafeToLinearHeading(coloredSample2Position.position, coloredSample2Position.heading)
+                            .build());
+
+            Actions.runBlocking(
+                    drive.actionBuilder(drive.pose)
+                            .strafeToLinearHeading(pushSample.position, pushSample.heading)
+                            .build());
+
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToLinearHeading(midwayPose2.position, midwayPose2.heading)
                     .build());
@@ -290,9 +301,9 @@ public class auto extends LinearOpMode{
 
             if(opModeIsActive()) robot.Elbow.setPosition(robot.ELBOW_GRAB);
             if(opModeIsActive()) robot.Elbow2.setPosition(robot.ELBOW_GRAB);
-            safeWaitSeconds(.5);
+            safeWaitSeconds(.25);
             if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_CLOSE);
-            safeWaitSeconds(.5);
+            safeWaitSeconds(.25);
             if(opModeIsActive()) robot.Elbow.setPosition(robot.ELBOW_UP);
             if(opModeIsActive()) robot.Elbow2.setPosition(robot.ELBOW_UP);
             //safeWaitSeconds(.5);
@@ -313,49 +324,59 @@ public class auto extends LinearOpMode{
                             .strafeToLinearHeading(specimenScoringPosition.position, specimenScoringPosition.heading)
                             .build());
 
+            if(opModeIsActive()) robot.Forward(.5);
+            safeWaitSeconds(.5);
             if(opModeIsActive()) robot.Arm.setPower(2);
             if(opModeIsActive()) robot.Arm2.setPower(2);
             if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
             if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
-            if(opModeIsActive()) robot.LittleArm.setPosition(0);
-            safeWaitSeconds(1);
+            safeWaitSeconds(.5);
             if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
 
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(midwayPose2.position, midwayPose2.heading)
-                    .build());
+                    .strafeToLinearHeading(grabSpecimenPosition.position, grabSpecimenPosition.heading)
+                    .build());Actions.runBlocking(
+                    drive.actionBuilder(drive.pose)
+                            .strafeToLinearHeading(grabSpecimenPosition.position, grabSpecimenPosition.heading)
+                            .build());
 
-            if(opModeIsActive()) robot.Arm.setPower(2);
-            if(opModeIsActive()) robot.Arm2.setPower(2);
-            if(opModeIsActive()) robot.Arm.setTargetPosition(10);
-            if(opModeIsActive()) robot.Arm2.setTargetPosition(-10);
-
-
-
-            /*if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
-            safeWaitSeconds(.5);
             if(opModeIsActive()) robot.Elbow.setPosition(robot.ELBOW_GRAB);
             if(opModeIsActive()) robot.Elbow2.setPosition(robot.ELBOW_GRAB);
-            safeWaitSeconds(.5);
-            if(opModeIsActive()) robot.Wrist.setPosition(1);
-            safeWaitSeconds(.5);
-            if(opModeIsActive()) robot.Elbow.setPosition(1);
-            if(opModeIsActive()) robot.Elbow2.setPosition(1);
-            safeWaitSeconds(.5);
+            safeWaitSeconds(.25);
+            if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_CLOSE);
+            safeWaitSeconds(.25);
+            if(opModeIsActive()) robot.Elbow.setPosition(robot.ELBOW_UP);
+            if(opModeIsActive()) robot.Elbow2.setPosition(robot.ELBOW_UP);
+            //safeWaitSeconds(.5);
 
             Actions.runBlocking(
                     drive.actionBuilder(drive.pose)
                             .strafeToLinearHeading(midwayPose3.position,midwayPose3.heading)
+                            .build());
+
+            if(opModeIsActive()) robot.Arm.setPower(2);
+            if(opModeIsActive()) robot.Arm2.setPower(2);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_HIGH_BAR_POSITION);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM2_HIGH_BAR_POSITION);
+            safeWaitSeconds(1);
+
+            Actions.runBlocking(
+                    drive.actionBuilder(drive.pose)
                             .strafeToLinearHeading(specimenScoringPosition.position, specimenScoringPosition.heading)
                             .build());
 
-            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_LOW_BASKET_POSITION);
-            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_LOW_BASKET_POSITION);
-            safeWaitSeconds(.5);
-            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_LOW_BASKET_POSITION);
-            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM2_LOW_BASKET_POSITION);
-            safeWaitSeconds(.5);
-            if(opModeIsActive()) robot.Wrist.setPosition(0);*/
+            if(opModeIsActive()) robot.Forward(.5);
+            safeWaitSeconds(.25);
+            if(opModeIsActive()) robot.Arm.setPower(2);
+            if(opModeIsActive()) robot.Arm2.setPower(2);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
+            safeWaitSeconds(1);
+            if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
+
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(grabSpecimenPosition.position, grabSpecimenPosition.heading)
+                    .build());
 
 
         }   //end of if (startPosition == BLUE_SPECIMENS || RED_SPECIMENS)

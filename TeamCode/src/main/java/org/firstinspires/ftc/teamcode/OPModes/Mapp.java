@@ -27,7 +27,7 @@ public class Mapp {
     public Servo Elbow2 = null;
     public Servo Claw = null;
     public Servo Wrist = null;
-    public GoBildaPinpointDriverRR pinpoint; // pinpoint CH i2C port 0
+    public GoBildaPinpointDriverRR pinpoint;
     public IMU imu = null;
 
 
@@ -47,15 +47,15 @@ public class Mapp {
     public final double WRIST_VERT = 1;
 
     // Elbow constraints
-    public final double ELBOW_GRAB = 0.05;
+    public final double ELBOW_GRAB = 0.1;
     public final double ELBOW_UP = 1;
 
     // Arm constraints
     public final int ARM_RESET_POSITION = 0;
     public final int PULL_SPECIMEN = 600;
     public final int PULL_SPECIMEN2 = -1100;
-    public final int ARM_HIGH_BAR_POSITION = 1850;
-    public final int ARM2_HIGH_BAR_POSITION = -1850;
+    public final int ARM_HIGH_BAR_POSITION = 1290;
+    public final int ARM2_HIGH_BAR_POSITION = -1290;
     public final int ARM_LOW_BASKET_POSITION = 1840;
     public final int ARM2_LOW_BASKET_POSITION = -1840;
 
@@ -91,14 +91,11 @@ public class Mapp {
         pinpoint = Mapp.get(GoBildaPinpointDriverRR.class,"pinpoint");
         pinpoint.resetPosAndIMU();
 
-
-
         Elbow.setPosition(1);
         Elbow2.setPosition(1);
         LittleArm.setPosition(0);
         Claw.setPosition(1);
         Wrist.setPosition(1);
-
 
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -107,7 +104,6 @@ public class Mapp {
 
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         leftBack.setDirection(DcMotor.Direction.REVERSE);
-
 
         Arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Arm.setPower(0);

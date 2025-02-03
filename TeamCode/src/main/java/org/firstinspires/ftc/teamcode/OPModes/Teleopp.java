@@ -138,8 +138,8 @@ public class Teleopp extends LinearOpMode {
                 robot.Elbow.setPosition(1);
                 robot.Elbow2.setPosition(1);
             } else if (gamepad2.dpad_down) {
-                robot.Elbow.setPosition(.05);
-                robot.Elbow2.setPosition(.05);
+                robot.Elbow.setPosition(.1);
+                robot.Elbow2.setPosition(.1);
             }
 
             //arm out

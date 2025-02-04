@@ -121,11 +121,12 @@ public class auto extends LinearOpMode{
 
             case RED_SAMPLES:
   //              drive = new PinpointDrive(hardwareMap, initPose);
-                sampleScoringPosition = new Pose2d(10, 12, Math.toRadians(135) );
-                yellowSample1Position = new Pose2d(25, 14 , Math.toRadians(0));
-                yellowSample2Position = new Pose2d(25, 22, Math.toRadians(0));
-                yellowSample3Position = new Pose2d(25, 22, Math.toRadians(15));
-                midwayPose1 = new Pose2d(5, 11, Math.toRadians(135));
+                sampleScoringPosition = new Pose2d(10, 10, Math.toRadians(135));
+                sampleScoringPosition2 = new Pose2d(14, 10, Math.toRadians(135));
+                yellowSample1Position = new Pose2d(23, 14 , Math.toRadians(0));
+                yellowSample2Position = new Pose2d(23, 17, Math.toRadians(0));
+                yellowSample3Position = new Pose2d(27, 15, Math.toRadians(45));
+                midwayPose1 = new Pose2d(16, 17, Math.toRadians(0));
                 midwayPose2 = new Pose2d(12, 8, Math.toRadians(180));
                 midwayPose3 = new Pose2d(18, 20, Math.toRadians(0));
                 parkPose = new Pose2d(50, -5, 270);
@@ -203,14 +204,21 @@ public class auto extends LinearOpMode{
             if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM2_LOW_BASKET_POSITION);
             safeWaitSeconds(1);
             if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
-            safeWaitSeconds(.25);
+            safeWaitSeconds(.5);
             if(opModeIsActive()) robot.Arm.setPower(2);
             if(opModeIsActive()) robot.Arm2.setPower(2);
             if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
             if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
 
+            if(opModeIsActive()) robot.Arm.setPower(2);
+            if(opModeIsActive()) robot.Arm2.setPower(2);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
+            safeWaitSeconds(.5);
+
             Actions.runBlocking(
                     drive.actionBuilder(drive.pose)
+                            .strafeToLinearHeading(midwayPose1.position, midwayPose1.heading)
                             .strafeToLinearHeading(yellowSample2Position.position, yellowSample2Position.heading)
                             .build());
 
@@ -236,11 +244,48 @@ public class auto extends LinearOpMode{
             if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM2_LOW_BASKET_POSITION);
             safeWaitSeconds(1);
             if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
+            safeWaitSeconds(.5);
+
+            if(opModeIsActive()) robot.Arm.setPower(2);
+            if(opModeIsActive()) robot.Arm2.setPower(2);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
+            safeWaitSeconds(.5);
+
+            Actions.runBlocking(
+                    drive.actionBuilder(drive.pose)
+                            .strafeToLinearHeading(yellowSample3Position.position, yellowSample3Position.heading)
+                            .build());
+
+
+            // Raise Arm to high bucket scoring position
+            if(opModeIsActive()) robot.Elbow.setPosition(robot.ELBOW_GRAB);
+            if(opModeIsActive()) robot.Elbow2.setPosition(robot.ELBOW_GRAB);
+            safeWaitSeconds(.5);
+            //close claw is wrist 1
+            if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_CLOSE);
+            safeWaitSeconds(.5);
+            if(opModeIsActive()) robot.Elbow.setPosition(1);
+            if(opModeIsActive()) robot.Elbow2.setPosition(1);
+
+            Actions.runBlocking(
+                    drive.actionBuilder(drive.pose)
+                            .strafeToLinearHeading(sampleScoringPosition2.position, sampleScoringPosition2.heading)
+                            .build());
+
+            safeWaitSeconds(.5);
+            if(opModeIsActive()) robot.Arm.setPower(2);
+            if(opModeIsActive()) robot.Arm2.setPower(2);
+            if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_LOW_BASKET_POSITION);
+            if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM2_LOW_BASKET_POSITION);
+            safeWaitSeconds(1);
+            if(opModeIsActive()) robot.Claw.setPosition(robot.CLAW_OPEN);
             safeWaitSeconds(.25);
             if(opModeIsActive()) robot.Arm.setPower(2);
             if(opModeIsActive()) robot.Arm2.setPower(2);
             if(opModeIsActive()) robot.Arm.setTargetPosition(robot.ARM_RESET_POSITION);
             if(opModeIsActive()) robot.Arm2.setTargetPosition(robot.ARM_RESET_POSITION);
+
 
         }   //end of if (startPosition == BLUE_SAMPLES || RED_SAMPLES)
 

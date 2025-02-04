@@ -102,6 +102,7 @@ public class Teleopp extends LinearOpMode {
             drive.updatePoseEstimate();
 
 
+
             robot.Arm.setTargetPosition((int) armPosition);
             robot.Arm2.setTargetPosition((int) arm2Position);
             robot.Arm.setPower(2);
@@ -111,6 +112,7 @@ public class Teleopp extends LinearOpMode {
                 armPosition = armPosition - 20;
                 arm2Position = arm2Position + 20;
             }
+
             if (gamepad2.right_stick_y < -0.05){
                 armPosition = armPosition + 20;
                 arm2Position = arm2Position - 20;
@@ -137,7 +139,8 @@ public class Teleopp extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 robot.Elbow.setPosition(1);
                 robot.Elbow2.setPosition(1);
-            } else if (gamepad2.dpad_down) {
+            }
+            else if (gamepad2.dpad_down) {
                 robot.Elbow.setPosition(.1);
                 robot.Elbow2.setPosition(.1);
             }

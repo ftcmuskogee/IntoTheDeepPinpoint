@@ -150,16 +150,6 @@ public class Teleopp extends LinearOpMode {
                 robot.LittleArm.setPosition(0);
             }
 
-
-
-
-            //TODO: CHANGE THE VALUES FOR THE POSITIONS
-            //score high bar
-            if(gamepad2.a){
-                robot.Elbow.setPosition(robot.ARM_LOW_BASKET_POSITION);
-                robot.Elbow2.setPosition(robot.ARM2_LOW_BASKET_POSITION);
-            }
-
             /*
             Gets the Pinpoint device status. Pinpoint can reflect a few states. But we'll primarily see
             READY: the device is working as normal

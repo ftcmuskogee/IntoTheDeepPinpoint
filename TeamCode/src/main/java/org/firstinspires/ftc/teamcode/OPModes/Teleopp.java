@@ -108,16 +108,15 @@ public class Teleopp extends LinearOpMode {
             robot.Arm.setPower(2);
             robot.Arm2.setPower(2);
             //move arm
-            if(gamepad2.right_stick_y > 0.05){
-                armPosition = armPosition - 20;
-                arm2Position = arm2Position + 20;
+            if(gamepad2.right_stick_y > 0){
+                armPosition = armPosition - 25;
+                arm2Position = arm2Position - 25;
             }
 
-            if (gamepad2.right_stick_y < -0.05){
-                armPosition = armPosition + 20;
-                arm2Position = arm2Position - 20;
+            if (gamepad2.right_stick_y < 0){
+                armPosition = armPosition + 25;
+                arm2Position = arm2Position + 25;
             }
-
 
             //wrist horizontal
             if (gamepad2.right_trigger > 0) {
@@ -130,7 +129,7 @@ public class Teleopp extends LinearOpMode {
 
             //close claw
             if (gamepad2.left_bumper) {
-                robot.Claw.setPosition(0);
+                robot.Claw.setPosition(.5);
                 //open claw
             } else if (gamepad2.right_bumper) {
                 robot.Claw.setPosition(1);

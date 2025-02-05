@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.teamcode.GoBilda.GoBildaPinpointDriver;
 
 public class Mapp {
     // names motors and sets motors to type null
-    private DcMotor rightFront = null;
+    public DcMotor rightFront = null;
     public DcMotor rightBack = null;
     public DcMotor leftBack = null;
     public DcMotor leftFront = null;
@@ -29,12 +30,6 @@ public class Mapp {
     public Servo Wrist = null;
     public GoBildaPinpointDriverRR pinpoint;
     public IMU imu = null;
-
-
-
-
-
-    //TODO: CHANGE THE VALUES OF THE CONSTRAINTS
 
     // Hardware Constants
 
@@ -55,9 +50,9 @@ public class Mapp {
     public final int PULL_SPECIMEN = 600;
     public final int PULL_SPECIMEN2 = -1100;
     public final int ARM_HIGH_BAR_POSITION = 1290;
-    public final int ARM2_HIGH_BAR_POSITION = -1290;
+    public final int ARM2_HIGH_BAR_POSITION = 1290;
     public final int ARM_LOW_BASKET_POSITION = 1840;
-    public final int ARM2_LOW_BASKET_POSITION = -1840;
+    public final int ARM2_LOW_BASKET_POSITION = 1840;
 
     // sets hardware map to null and names it
 
@@ -112,12 +107,15 @@ public class Mapp {
         //Arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
         Arm2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Arm2.setPower(0);
         Arm2.setTargetPosition(0);
         Arm2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //Arm2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Arm2.setDirection(DcMotor.Direction.REVERSE);
+
 
     }
 

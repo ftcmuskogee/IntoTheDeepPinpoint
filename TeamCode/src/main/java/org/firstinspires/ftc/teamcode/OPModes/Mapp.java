@@ -88,7 +88,7 @@ public class Mapp {
 
         Elbow.setPosition(1);
         Elbow2.setPosition(1);
-        LittleArm.setPosition(0);
+        LittleArm.setPosition(0.5);
         Claw.setPosition(1);
         Wrist.setPosition(1);
 

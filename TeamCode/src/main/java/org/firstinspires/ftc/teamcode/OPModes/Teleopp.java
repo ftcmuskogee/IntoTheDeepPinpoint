@@ -132,7 +132,7 @@ public class Teleopp extends LinearOpMode {
                 robot.Claw.setPosition(.5);
                 //open claw
             } else if (gamepad2.right_bumper) {
-                robot.Claw.setPosition(1);
+                robot.Claw.setPosition(0);
             }
 
             if (gamepad2.dpad_up) {
@@ -146,7 +146,7 @@ public class Teleopp extends LinearOpMode {
 
             //arm out
             if (gamepad2.dpad_left) {
-                robot.LittleArm.setPosition(1);
+                robot.LittleArm.setPosition(.5);
                 //arm in
             } else if (gamepad2.dpad_right) {
                 robot.LittleArm.setPosition(0);
